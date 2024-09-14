@@ -249,6 +249,8 @@ public:
     bool Replay_IsPlaying = true;
     bool Replay_IsLive = true;
 
+    int maxLevelDetection = 150; //hardcoded due to.... reasons(no inputint and too tired to implement it)
+
     std::map<Game::Voter, Game::VotedFor> voteMonitor;
 
     //std::vector<Game::PlayerId> aumUsers;

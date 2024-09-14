@@ -248,6 +248,10 @@ namespace SelfTab {
             if (ToggleButton("Always Move", &State.AlwaysMove)) {
                 State.Save();
             }
+
+            if (ImGui::SliderInt("Max Level Detection", &State.maxLevelDetection, 150, 500)) {
+                State.Save();
+            }
             
             if (ToggleButton("No Shapeshift Animation", &State.AnimationlessShapeshift)) {
                 State.Save();

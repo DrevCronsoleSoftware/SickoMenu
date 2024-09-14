@@ -36,7 +36,9 @@ enum class VENT_ACTIONS {
 
 enum class CHEAT_ACTIONS {
 	CHEAT_TELEPORT,
-	CHEAT_KILL_IMPOSTOR
+	CHEAT_KILL_IMPOSTOR,
+	CHEAT_LEVEL_TOO_HIGH,
+	CHEAT_MOD_DETECTED
 };
 
 enum class PHANTOM_ACTIONS {
@@ -48,8 +50,7 @@ enum class SABOTAGE_ACTIONS {
 	SABOTAGE_CALL,
 	SABOTAGE_FIX
 };
-
-const std::vector<const char*> CHEAT_ACTION_NAMES = { "Teleporting", "Killed abnormally" };
+const std::vector<const char*> CHEAT_ACTION_NAMES = { "Teleporting", "Killed abnormally", "Level too high", "Modified Client"};
 
 struct EVENT_PLAYER {
 	Game::PlayerId playerId;

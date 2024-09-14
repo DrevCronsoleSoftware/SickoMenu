@@ -213,7 +213,6 @@ namespace Menu {
 					GameTab::Render();
 				}
 			}
-#ifdef _DEBUG
 			if (openDebug) {
 				if (State.showDebugTab) DebugTab::Render();
 				else {
@@ -221,7 +220,6 @@ namespace Menu {
 					GameTab::Render();
 				}
 			}
-#endif
 
 			ImGui::End();
 		}

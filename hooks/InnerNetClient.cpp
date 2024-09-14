@@ -153,6 +153,28 @@ void dInnerNetClient_Update(InnerNetClient* __this, MethodInfo* method)
                     GetPlayerData(*Game::pLocalPlayer)->fields.IsDead = false;
                 }
             }
+            //i dont know why im doing this shit -- LEVEL TOO HIGH
+            if (IsInGame() || IsInLobby()) {
+                for (auto playerCtrl : GetAllPlayerControl()) {
+                    const auto& player = PlayerSelection(playerCtrl);
+                    const auto& validPlayer = PlayerSelection(playerCtrl).validate();
+                    if (!validPlayer.has_value())
+                        continue;
+                    auto playerData = GetPlayerData(playerCtrl);
+                    if (playerData->fields.Disconnected)
+                        continue;
+
+                    synchronized(Replay::replayEventMutex) {
+                        if (playerData->fields.PlayerLevel > State.maxLevelDetection) {
+                            //State.rpcQueue.push(new RpcMurderLoop(*Game::pLocalPlayer, p.validate().get_PlayerControl(), 200, true));
+                            //todo force kick on cheat detect
+                            State.liveReplayEvents.emplace_back(std::make_unique<CheatDetectedEvent>(validPlayer.get_PlayerControl(), CHEAT_ACTIONS::CHEAT_LEVEL_TOO_HIGH));
+                        }
+                    }
+                   
+                }
+            }
+           
 
             if (State.SnipeColor && (IsInGame() || IsInLobby())) {
                 if ((IsColorAvailable(State.SelectedColorId) || !State.SafeMode) && GetPlayerOutfit(GetPlayerData(*Game::pLocalPlayer))->fields.ColorId != State.SelectedColorId) {

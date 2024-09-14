@@ -362,14 +362,14 @@ namespace PlayersTab {
 							}
 						}
 					}
-					/*else if (IsInGame()) {
+					else if (IsInGame()) {
 						if (ImGui::Button("Attempt to Ban")) {
 							for (auto p : selectedPlayers) {
 								if (p.has_value() && p.validate().is_LocalPlayer()) continue;
 								State.rpcQueue.push(new RpcMurderLoop(*Game::pLocalPlayer, p.validate().get_PlayerControl(), 200, true));
 							}
 						}
-					}*/
+					}
 					
 					if (IsHost() && ImGui::Button("Ban")) {
 						for (auto p : selectedPlayers) {
